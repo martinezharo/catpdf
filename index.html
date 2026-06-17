@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CatPDF · une tus PDF</title>
+<title>CatPDF · Concatenate PDF Files Online</title>
+<meta name="description" content="CatPDF is a private, browser-based PDF concatenation tool. Combine multiple PDF files into one ordered document without uploading anything to a server." />
+<meta name="keywords" content="concatenate PDF files, combine PDF, merge PDF online, join PDF files, PDF concatenation tool, private PDF merger" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="CatPDF · Concatenate PDF Files Online" />
+<meta property="og:description" content="Concatenate, reorder, and download multiple PDF files as one document directly in your browser." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="CatPDF · Concatenate PDF Files Online" />
+<meta name="twitter:description" content="A private PDF concatenation tool that combines files locally in your browser." />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,30 +24,30 @@
 <div class="wrap">
   <header>
     <div class="brand">CatPDF</div>
-    <h1>Une tus PDF<br>en <em>uno solo</em>.</h1>
-    <p class="sub">Suelta tus archivos, ponlos en el orden que quieras arrastrando, y descarga el documento combinado. Todo ocurre en tu navegador.</p>
+    <h1>Concatenate PDF files<br>into <em>one document</em>.</h1>
+    <p class="sub">Drop your PDFs, arrange them in the exact order you need, and download a single combined file. CatPDF works locally in your browser.</p>
   </header>
 
-  <div class="drop" id="drop" tabindex="0" role="button" aria-label="Añadir archivos PDF">
+  <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add PDF files">
     <div class="ring">+</div>
-    <strong>Arrastra tus PDF aquí o haz clic para elegirlos</strong>
-    <span>Puedes añadir tantos como quieras, también en varias tandas</span>
+    <strong>Drag PDF files here or click to choose them</strong>
+    <span>Add as many PDFs as you need, including in multiple batches</span>
   </div>
   <input type="file" id="file" accept="application/pdf,.pdf" multiple hidden />
 
-  <ul class="list" id="list" aria-label="Lista de PDF a combinar"></ul>
+  <ul class="list" id="list" aria-label="PDF files to concatenate"></ul>
 
   <div class="bar" id="bar" hidden>
     <div class="total" id="total"></div>
     <div class="actions">
-      <button class="btn btn-ghost" id="clear">Vaciar</button>
-      <button class="btn btn-primary" id="merge" disabled>Combinar PDF</button>
+      <button class="btn btn-ghost" id="clear">Clear</button>
+      <button class="btn btn-primary" id="merge" disabled>Concatenate PDFs</button>
     </div>
   </div>
 
   <div class="status" id="status" role="status" aria-live="polite"></div>
 
-  <p class="privacy"><b>Privacidad:</b> esta herramienta no envía nada a ningún servidor. Tus archivos se procesan localmente en tu ordenador y nunca salen de él. Puedes guardar esta página y usarla sin conexión.</p>
+  <p class="privacy"><b>Privacy:</b> this PDF concatenation tool does not upload your files to any server. Your PDFs are processed locally on your computer and never leave your browser. You can save this page and use it offline.</p>
 </div>
 
 <script type="module" src="/script.js"></script>

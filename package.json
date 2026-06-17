@@ -1,14 +1,20 @@
 {
-  "name": "pdfcat",
+  "name": "catpdf",
   "version": "1.0.0",
-  "description": "",
+  "description": "A private browser-based tool to concatenate multiple PDF files into one ordered document.",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": [],
+  "keywords": [
+    "pdf",
+    "concatenate-pdf",
+    "combine-pdf",
+    "merge-pdf",
+    "pdf-tool"
+  ],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.33.0",

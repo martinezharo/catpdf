@@ -21,7 +21,7 @@ async function addFiles(fileList) {
     f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
 
   const skipped = fileList.length - incoming.length;
-  if (skipped > 0) setStatus(`Se ignoraron ${skipped} archivo(s) que no son PDF.`, 'bad');
+  if (skipped > 0) setStatus(`${skipped} non-PDF file(s) were ignored.`, 'bad');
 
   for (const f of incoming) {
     const entry = { id: ++uid, name: f.name, size: f.size, buffer: null, pages: null, error: false };
@@ -53,21 +53,21 @@ function render() {
     li.dataset.id = d.id;
 
     const stats = d.error
-      ? `<div class="stats err">no se pudo leer · ¿dañado o protegido?</div>`
-      : `<div class="stats">${d.pages == null ? 'leyendo…' : d.pages + (d.pages === 1 ? ' página' : ' páginas')} · ${fmtSize(d.size)}</div>`;
+      ? `<div class="stats err">could not be read · damaged or protected?</div>`
+      : `<div class="stats">${d.pages == null ? 'reading...' : d.pages + (d.pages === 1 ? ' page' : ' pages')} · ${fmtSize(d.size)}</div>`;
 
     li.innerHTML = `
-      <span class="handle" title="Arrastra para reordenar" aria-hidden="true">⠿</span>
+      <span class="handle" title="Drag to reorder" aria-hidden="true">⠿</span>
       <span class="num">${String(i + 1).padStart(2, '0')}</span>
       <div class="meta">
         <div class="name" title="${escapeHtml(d.name)}">${escapeHtml(d.name)}</div>
         ${stats}
       </div>
       <div class="moves">
-        <button class="icon-btn up" ${i === 0 ? 'disabled' : ''} aria-label="Subir">▲</button>
-        <button class="icon-btn down" ${i === docs.length - 1 ? 'disabled' : ''} aria-label="Bajar">▼</button>
+        <button class="icon-btn up" ${i === 0 ? 'disabled' : ''} aria-label="Move up">▲</button>
+        <button class="icon-btn down" ${i === docs.length - 1 ? 'disabled' : ''} aria-label="Move down">▼</button>
       </div>
-      <button class="icon-btn remove" aria-label="Quitar">✕</button>
+      <button class="icon-btn remove" aria-label="Remove">✕</button>
     `;
 
     li.querySelector('.up').onclick = () => move(i, i - 1);
@@ -80,7 +80,7 @@ function render() {
   const valid = docs.filter(d => !d.error);
   const totalPages = valid.reduce((n, d) => n + (d.pages || 0), 0);
   els.bar.hidden = docs.length === 0;
-  els.total.innerHTML = `<b>${valid.length}</b> PDF · <b>${totalPages}</b> páginas en total`;
+  els.total.innerHTML = `<b>${valid.length}</b> PDF · <b>${totalPages}</b> total pages`;
   els.merge.disabled = valid.length < 2 || valid.some(d => d.pages == null);
 }
 
@@ -120,7 +120,7 @@ async function mergePdfs() {
   if (valid.length < 2) return;
 
   els.merge.disabled = true;
-  setStatus('Combinando…', '');
+  setStatus('Concatenating...', '');
 
   try {
     const out = await PDFDocument.create();
@@ -134,12 +134,12 @@ async function mergePdfs() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'combinado.pdf';
+    a.download = 'catpdf-concatenated.pdf';
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 4000);
-    setStatus(`Listo · ${out.getPageCount()} páginas combinadas y descargadas.`, 'ok');
+    setStatus(`Done · ${out.getPageCount()} pages concatenated and downloaded.`, 'ok');
   } catch (e) {
-    setStatus('Algo falló al combinar. Revisa que los PDF no estén protegidos.', 'bad');
+    setStatus('Something failed while concatenating. Check that the PDFs are not protected.', 'bad');
   } finally {
     els.merge.disabled = false;
   }
