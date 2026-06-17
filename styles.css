@@ -184,6 +184,19 @@ h1 em { font-style: italic; color: var(--brass-hi); }
 }
 .privacy b { color: var(--on-canvas); font-weight: 500; }
 
+.github-link {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  color: var(--muted);
+  transition: color .2s ease, transform .2s ease;
+  z-index: 100;
+}
+.github-link:hover {
+  color: var(--on-canvas);
+  transform: scale(1.1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
