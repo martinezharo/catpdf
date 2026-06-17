@@ -1,4 +1,5 @@
-const { PDFDocument } = PDFLib;
+import { PDFDocument } from 'pdf-lib';
+import Sortable from 'sortablejs';
 
 const els = {
   drop: document.getElementById('drop'),
