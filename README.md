@@ -1,84 +1,24 @@
 # CatPDF
 
-CatPDF is a private, browser-based tool for concatenating multiple PDF files into one ordered document.
+CatPDF is a private, browser-based PDF merger. Add multiple PDFs, inspect page
+counts, reorder them with drag-and-drop or move buttons, remove files, and
+download one combined document.
 
-Files are processed locally in the browser with `pdf-lib`. Nothing is uploaded to a server.
-
-## Features
-
-- Add multiple PDF files in one or more batches.
-- Reorder files with drag and drop.
-- Move files up or down with keyboard-friendly controls.
-- Remove files before merging.
-- Concatenate valid PDFs into a single downloadable document.
-- Runs entirely in the browser.
-
-## Tech Stack
-
-- Vite
-- pdf-lib
-- SortableJS
-- Cloudflare Workers Static Assets for deployment
-
-## Requirements
-
-- Node.js
-- pnpm 10.33.0 or compatible
+PDFs are read and merged in the browser with `pdf-lib`; nothing is uploaded and
+the project has no backend.
 
 ## Development
 
-Install dependencies:
+Requires Node.js 20.19+ or 22.12+ and pnpm 10.33.0.
 
 ```bash
 pnpm install
+pnpm dev          # local development
+pnpm build        # production build in dist/
+pnpm preview      # preview the production build
 ```
 
-Start the local development server:
+The [wrangler.jsonc](wrangler.jsonc) file configures `dist/` as Cloudflare
+Workers Static Assets. No test script is defined.
 
-```bash
-pnpm dev
-```
-
-Build for production:
-
-```bash
-pnpm build
-```
-
-Preview the production build locally:
-
-```bash
-pnpm preview
-```
-
-## Deployment
-
-This project is configured for Cloudflare deployment with `wrangler.jsonc`.
-
-The production build outputs static files to `dist`, and Wrangler deploys that directory as Cloudflare Workers Static Assets.
-
-Build first:
-
-```bash
-pnpm build
-```
-
-Then deploy:
-
-```bash
-npx wrangler deploy
-```
-
-## Privacy
-
-CatPDF does not send PDFs to any backend. PDF reading, page copying, ordering, and final file generation happen locally in the user's browser.
-
-## License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-<p align="center">
-  Made with ❤️ by <strong><a href="https://olivermartinezharo.com">Oli</a></strong>
-</p>
+See [LICENSE](LICENSE) for the license terms.
