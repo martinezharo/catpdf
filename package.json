@@ -16,7 +16,7 @@
     "pdf-tool"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "dependencies": {
     "pdf-lib": "^1.17.1",
